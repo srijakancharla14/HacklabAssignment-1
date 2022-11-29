@@ -9,23 +9,23 @@ function Button(props) {
         timer = setInterval(() => setcountDown(countDown > 0 ? countDown-1: 0), 1000);
         return () => clearInterval(timer);
     },[countDown]);
-
+    
     useEffect(() => {
         console.log(countDown,currentState, upcomingState)
         if(countDown<=0) {
             console.log("Update current state to ::", upcomingState);
             setcurrentState(upcomingState);
-            if (upcomingState === "red")  { 
+            if (currentState === "red")  { 
                 setupcomingState("green");
                 console.log("Delay Added :: ", currentState, upcomingState, 15);
                 setcountDown(15);
             }
-            else if(upcomingState === "green")  {
+            else if(currentState === "green")  {
                 setupcomingState("yellow");
                 console.log("Delay Added :: ", currentState, upcomingState,  5);
                 setcountDown(5);
             }
-            else if(upcomingState === "yellow")  {
+            else if(currentState === "yellow")  {
                 setupcomingState("red");
                 console.log("Delay Added :: ", currentState, upcomingState,  20);
                 setcountDown(20);
@@ -36,8 +36,8 @@ function Button(props) {
 
   return (
     <Fragment>
-        <div className=" bg-gray-500  h-20 mt-3 w-60 ml-96">
-            <h1 className="font-semibold mt-2 mx-3">Counter</h1>
+        <div className=" bg-gray-500  h-20 mt-3 w-60 ml-96 ">
+            <h1 className="font-semibold mt-2 mx-3 ">Counter</h1>
             <h1 className="font-semibold mx-28 ">
                 {/* {minute}:{second} */}
                 
@@ -47,15 +47,15 @@ function Button(props) {
 
         <button // Red
             style={{background: currentState === "red" ? "#991b1b" : "black"}}
-            className={"mt-20 ml-80 m-10 p-20 rounded-full font-sans text-center "}
-            onClick={() => {currentState !== "red" && setupcomingState("red")}}
+            className={"mt-20 ml-80 m-10 p-20 rounded-full font-sans text-center"}
+            onClick={() => {currentState !== "red" && setcurrentState("red"); setcountDown(0)}}
         >
             {props.items[0].name}
         </button>
         <button // Green
             style={{background: currentState === "green" ? "#166534": "black"}}
             className=" ml-52 p-20 rounded-full"
-            onClick={() => {currentState !== "green" && setupcomingState("green")}}
+            onClick={() => {currentState !== "green" && setcurrentState("green"); setcountDown(0)}}
         >
             {props.items[1].name}
         </button>
@@ -63,7 +63,7 @@ function Button(props) {
             <button // Yellow
                 style={{background: currentState === "yellow" ? "#FFFF00": "black"}}
                 className=" ml-96 mt-10 p-20 rounded-full"
-                onClick={() => {currentState !== "yellow" && setupcomingState("yellow")}}
+                onClick={() => {currentState !== "yellow" && setcurrentState("yellow"); setcountDown(0)}}
             >
             {props.items[2].name}
             </button>
