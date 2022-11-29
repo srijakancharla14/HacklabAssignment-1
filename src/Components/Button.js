@@ -15,17 +15,17 @@ function Button(props) {
         if(countDown<=0) {
             console.log("Update current state to ::", upcomingState);
             setcurrentState(upcomingState);
-            if (currentState === "red")  { 
+            if (upcomingState === "red")  { 
                 setupcomingState("green");
                 console.log("Delay Added :: ", currentState, upcomingState, 15);
                 setcountDown(15);
             }
-            else if(currentState === "green")  {
+            else if(upcomingState === "green")  {
                 setupcomingState("yellow");
                 console.log("Delay Added :: ", currentState, upcomingState,  5);
                 setcountDown(5);
             }
-            else if(currentState === "yellow")  {
+            else if(upcomingState === "yellow")  {
                 setupcomingState("red");
                 console.log("Delay Added :: ", currentState, upcomingState,  20);
                 setcountDown(20);
@@ -48,14 +48,14 @@ function Button(props) {
         <button // Red
             style={{background: currentState === "red" ? "#991b1b" : "black"}}
             className={"mt-20 ml-80 m-10 p-20 rounded-full font-sans text-center"}
-            onClick={() => {currentState !== "red" && setcurrentState("red"); setcountDown(0)}}
+            onClick={() => {currentState !== "red" && setupcomingState("red"); setcountDown(0)}}
         >
             {props.items[0].name}
         </button>
         <button // Green
             style={{background: currentState === "green" ? "#166534": "black"}}
             className=" ml-52 p-20 rounded-full"
-            onClick={() => {currentState !== "green" && setcurrentState("green"); setcountDown(0)}}
+            onClick={() => {currentState !== "green" && setupcomingState("green"); setcountDown(0)}}
         >
             {props.items[1].name}
         </button>
@@ -63,7 +63,7 @@ function Button(props) {
             <button // Yellow
                 style={{background: currentState === "yellow" ? "#FFFF00": "black"}}
                 className=" ml-96 mt-10 p-20 rounded-full"
-                onClick={() => {currentState !== "yellow" && setcurrentState("yellow"); setcountDown(0)}}
+                onClick={() => {currentState !== "yellow" && setupcomingState("yellow"); setcountDown(0)}}
             >
             {props.items[2].name}
             </button>
